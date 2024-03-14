@@ -11,7 +11,7 @@ export default function QueryProcessor(query: string): string {
       "GabrielA"
     );
   }
-  if (query.toLowerCase().includes("what is")) {
+  if (query.toLowerCase().includes("plus")) {
     let numbers = query.match(/\d+/g);
     if (numbers && numbers.length >= 2) {
       let num1 = parseInt(numbers[0]);
@@ -28,6 +28,18 @@ export default function QueryProcessor(query: string): string {
     if (numbers && numbers.length > 0) {
       let largest = Math.max(...numbers.map(Number));
       return largest + "";
+    }
+  } 
+
+  if (query.toLowerCase().includes("multiplied")) {
+    let numbers = query.match(/\d+/g);
+    if (numbers && numbers.length >= 2) {
+      let num1 = parseInt(numbers[0]);
+      let num2 = parseInt(numbers[1]);
+      let result = num1 * num2;
+      return (
+        result + ""
+      );
     }
   }
 
