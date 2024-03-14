@@ -55,5 +55,25 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.toLowerCase().includes("are primes")) {
+    let numbers = query.match(/\d+/g);
+    if (numbers && numbers.length > 0) {
+      let primes = numbers.filter(num => isPrime(parseInt(num)));
+      return primes.join(", ") || "None";
+    }
+  }
+
   return "";
+}
+
+function isPrime(num: number): boolean {
+  if (num <= 1) return false;
+  if (num <= 3) return true;
+  if (num % 2 === 0 || num % 3 === 0) return false;
+  let i = 5;
+  while (i * i <= num) {
+    if (num % i === 0 || num % (i + 2) === 0) return false;
+    i += 6;
+  }
+  return true;
 }
