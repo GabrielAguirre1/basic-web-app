@@ -43,5 +43,17 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.toLowerCase().includes("which of the following numbers is both a square and a cube")) {
+    let numbers = query.match(/\d+/g);
+    if (numbers && numbers.length > 0) {
+      for (let i = 0; i < numbers.length; i++) {
+        let number = parseInt(numbers[i]);
+        if (Math.cbrt(number) % 1 === 0 && Math.sqrt(number) % 1 === 0) {
+          return "The number that is both a square and a cube is " + number + ".";
+        }
+      }
+    }
+  }
+
   return "";
 }
