@@ -14,12 +14,8 @@ export default function QueryProcessor(query: string): string {
   if (query.toLowerCase().includes("plus")) {
     let numbers = query.match(/\d+/g);
     if (numbers && numbers.length >= 2) {
-      let num1 = parseInt(numbers[0]);
-      let num2 = parseInt(numbers[1]);
-      let result = num1 + num2;
-      return (
-        result + ""
-      );
+      let sum = numbers.reduce((total, num) => total + parseInt(num), 0);
+      return sum + "";
     }
   }
 
@@ -60,6 +56,22 @@ export default function QueryProcessor(query: string): string {
     if (numbers && numbers.length > 0) {
       let primes = numbers.filter(num => isPrime(parseInt(num)));
       return primes.join(", ") || "None";
+    }
+  }
+
+  if (query.toLowerCase().includes("minus")) {
+    let numbers = query.match(/\d+/g);
+    if (numbers && numbers.length >= 2) {
+      let difference = parseInt(numbers[0]) - parseInt(numbers[1]);
+      return difference + "";
+    }
+  }
+
+  if (query.toLowerCase().includes("to the power of")) {
+    let numbers = query.match(/\d+/g);
+    if (numbers && numbers.length >= 2) {
+      let power = Math.pow(parseInt(numbers[0]), parseInt(numbers[1]));
+      return power + "";
     }
   }
 
